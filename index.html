@@ -1,0 +1,975 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EC2 Web Server | AWS Cloud Computing Portfolio Project 3</title>
+  <meta name="description" content="AWS Portfolio Project 3: A production-ready responsive website architected for deployment on an Amazon EC2 Linux instance running Apache HTTP Server.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23ff9900'><rect x='2' y='2' width='20' height='8' rx='2'/><rect x='2' y='14' width='20' height='8' rx='2'/></svg>">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="ambient-glow" aria-hidden="true"></div>
+
+  <!-- Navigation Bar -->
+  <header>
+    <nav class="navbar" id="navbar" aria-label="Main Navigation">
+      <div class="container nav-container">
+        <a href="#hero" class="nav-brand" aria-label="EC2 Web Server Project Home">
+          <div class="brand-icon" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="2" width="20" height="8" rx="2" ry="2"></rect>
+              <rect x="2" y="14" width="20" height="8" rx="2" ry="2"></rect>
+              <line x1="6" y1="6" x2="6.01" y2="6"></line>
+              <line x1="6" y1="18" x2="6.01" y2="18"></line>
+            </svg>
+          </div>
+          <span>EC2 Web Server</span>
+          <span class="brand-badge">Project 3</span>
+        </a>
+
+        <ul class="nav-links" id="nav-links">
+          <li><a href="#about" class="nav-link">About</a></li>
+          <li><a href="#architecture" class="nav-link">Architecture</a></li>
+          <li><a href="#services" class="nav-link">AWS Services</a></li>
+          <li><a href="#setup" class="nav-link">Server Setup</a></li>
+          <li><a href="#technologies" class="nav-link">Technologies</a></li>
+          <li><a href="#status" class="nav-link">Status</a></li>
+          <li><a href="#outcomes" class="nav-link">Outcomes</a></li>
+        </ul>
+
+        <div class="nav-actions">
+          <button class="theme-toggle-btn" id="theme-toggle" aria-label="Toggle theme">
+            <svg id="theme-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <!-- Dynamically populated by JS -->
+            </svg>
+          </button>
+          <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Toggle mobile menu" aria-expanded="false">
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <!-- Hero Section -->
+    <section class="hero-section" id="hero">
+      <div class="container">
+        <div class="hero-grid">
+          <div class="hero-content">
+            <div class="hero-pill">
+              <span class="pill-dot" aria-hidden="true"></span>
+              <span>AWS Cloud Portfolio &bull; Project 3</span>
+            </div>
+            <h1 class="hero-title">
+              EC2 <span class="gradient-text">Web Server</span>
+            </h1>
+            <p class="hero-subtitle">
+              A responsive, portfolio-grade web platform architected to be deployed on an Amazon EC2 Linux instance running the industry-standard Apache HTTP Web Server.
+            </p>
+            <div class="hero-cta-group">
+              <a href="#about" class="btn btn-primary" id="btn-explore">
+                <span>Explore Project</span>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <line x1="5" y1="12" x2="19" y2="12"></line>
+                  <polyline points="12 5 19 12 12 19"></polyline>
+                </svg>
+              </a>
+              <a href="#architecture" class="btn btn-secondary" id="btn-architecture">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
+                  <polyline points="2 17 12 22 22 17"></polyline>
+                  <polyline points="2 12 12 17 22 12"></polyline>
+                </svg>
+                <span>View Architecture</span>
+              </a>
+            </div>
+            <div class="hero-stats">
+              <div class="stat-item">
+                <span class="stat-value">AWS EC2</span>
+                <span class="stat-label">Virtual Compute</span>
+              </div>
+              <div class="stat-item">
+                <span class="stat-value">Apache2</span>
+                <span class="stat-label">Web Engine</span>
+              </div>
+              <div class="stat-item">
+                <span class="stat-value">Ubuntu 26.04</span>
+                <span class="stat-label">Linux OS</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Hero Visual: Simulated EC2 Server Terminal -->
+          <div class="hero-visual">
+            <div class="terminal-card">
+              <div class="terminal-topbar">
+                <div class="terminal-dots">
+                  <span class="dot red"></span>
+                  <span class="dot yellow"></span>
+                  <span class="dot green"></span>
+                </div>
+                <span class="terminal-title">ubuntu@ip-172-31-42-10: ~</span>
+                <span class="status-badge completed">Port 80 Ready</span>
+              </div>
+              <div class="terminal-body">
+                <div class="term-line">
+                  <span class="term-prompt">ubuntu@ec2-web:~$</span>
+                  <span class="term-cmd">sudo systemctl status apache2</span>
+                </div>
+                <div class="term-line term-output">
+                  ● apache2.service - The Apache HTTP Server
+                </div>
+                <div class="term-line term-output">
+                  &nbsp;&nbsp;Loaded: loaded (/lib/systemd/system/apache2.service; enabled)
+                </div>
+                <div class="term-line term-output">
+                  &nbsp;&nbsp;Active: <span class="term-success">active (running)</span> since EC2 Init
+                </div>
+                <div class="term-line term-output">
+                  &nbsp;&nbsp;Main PID: 1284 (apache2)
+                </div>
+                <div class="term-line" style="margin-top: 0.75rem;">
+                  <span class="term-prompt">ubuntu@ec2-web:~$</span>
+                  <span class="term-cmd">ls -la /var/www/html/</span>
+                </div>
+                <div class="term-line term-output">
+                  -rw-r--r-- index.html &bull; <span class="term-badge">HTTP 200 OK</span>
+                </div>
+                <div class="term-line term-output">
+                  drwxr-xr-x css/ &bull; drwxr-xr-x js/ &bull; drwxr-xr-x assets/
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 1: ABOUT THE PROJECT -->
+    <section class="section fade-in-section" id="about">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-badge">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+            <span>Foundations</span>
+          </div>
+          <h2 class="section-title">About The Project</h2>
+          <p class="section-desc">
+            An in-depth look into the core infrastructure primitives powering modern web hosting on the AWS Cloud.
+          </p>
+        </div>
+
+        <div class="about-grid">
+          <div class="card">
+            <div class="card-icon" aria-hidden="true">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="2" y="2" width="20" height="8" rx="2" ry="2"></rect>
+                <rect x="2" y="14" width="20" height="8" rx="2" ry="2"></rect>
+                <line x1="6" y1="6" x2="6.01" y2="6"></line>
+                <line x1="6" y1="18" x2="6.01" y2="18"></line>
+              </svg>
+            </div>
+            <h3 class="card-title">What is Amazon EC2?</h3>
+            <p class="card-text">
+              Amazon Elastic Compute Cloud (Amazon EC2) provides scalable computing capacity in the AWS Cloud. It eliminates the need to invest in hardware up front, allowing developers to build, test, and deploy applications rapidly across global regions.
+            </p>
+            <ul class="card-list">
+              <li>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span>Full root / administrative control over Linux OS</span>
+              </li>
+              <li>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span>Flexible instance sizing (e.g. t2.micro / t3.micro in AWS Free Tier)</span>
+              </li>
+            </ul>
+          </div>
+
+          <div class="card">
+            <div class="card-icon" aria-hidden="true">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="2" y1="12" x2="22" y2="12"></line>
+                <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+              </svg>
+            </div>
+            <h3 class="card-title">What is a Web Server?</h3>
+            <p class="card-text">
+              A web server is software and hardware that uses HTTP (Hypertext Transfer Protocol) and other protocols to respond to client requests made over the World Wide Web. Its primary function is to store, process, and deliver web pages to users.
+            </p>
+            <ul class="card-list">
+              <li>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span>Listens on TCP Port 80 (HTTP) & Port 443 (HTTPS)</span>
+              </li>
+              <li>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span>Maps incoming URI routes to files in <code>/var/www/html/</code></span>
+              </li>
+            </ul>
+          </div>
+
+          <div class="card">
+            <div class="card-icon" aria-hidden="true">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                <polyline points="14 2 14 8 20 8"></polyline>
+                <line x1="16" y1="13" x2="8" y2="13"></line>
+                <line x1="16" y1="17" x2="8" y2="17"></line>
+                <polyline points="10 9 9 9 8 9"></polyline>
+              </svg>
+            </div>
+            <h3 class="card-title">Why Apache HTTP Server?</h3>
+            <p class="card-text">
+              Apache HTTP Server is an open-source, battle-tested web server that powers a significant portion of the internet. It is robust, modular, and natively supported across Linux distributions like Ubuntu and Amazon Linux.
+            </p>
+            <ul class="card-list">
+              <li>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span>High stability with predictable configuration via <code>apache2.conf</code></span>
+              </li>
+              <li>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span>Rich ecosystem of modules for rewrites, security, and SSL</span>
+              </li>
+            </ul>
+          </div>
+
+          <div class="card">
+            <div class="card-icon" aria-hidden="true">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                <polyline points="22,6 12,13 2,6"></polyline>
+              </svg>
+            </div>
+            <h3 class="card-title">How It Is Served From EC2</h3>
+            <p class="card-text">
+              When a user enters the EC2 Public IPv4 address into their web browser, the HTTP request traverses the Internet, hits the AWS VPC Internet Gateway, passes the EC2 Security Group on Port 80, and is received by Apache to return the web assets.
+            </p>
+            <ul class="card-list">
+              <li>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span>Seamless zero-delay static delivery directly from disk cache</span>
+              </li>
+              <li>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span>Isolated execution within an Amazon VPC public subnet</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 2: ARCHITECTURE -->
+    <section class="section fade-in-section" id="architecture">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-badge">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+            <span>Topology & Flow</span>
+          </div>
+          <h2 class="section-title">System Architecture</h2>
+          <p class="section-desc">
+            Visualizing the end-to-end request lifecycle from client browser to the EC2 Apache Web Server.
+          </p>
+        </div>
+
+        <div class="architecture-container">
+          <!-- Flow Pipeline -->
+          <div class="arch-flow">
+            <!-- Node 1: User -->
+            <div class="arch-node">
+              <div class="arch-node-icon">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                  <circle cx="12" cy="7" r="4"></circle>
+                </svg>
+              </div>
+              <span class="arch-node-title">1. User</span>
+              <span class="arch-node-desc">Browser Client</span>
+            </div>
+
+            <!-- Connector -->
+            <div class="arch-connector" aria-hidden="true">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </div>
+
+            <!-- Node 2: Internet -->
+            <div class="arch-node">
+              <div class="arch-node-icon">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <line x1="2" y1="12" x2="22" y2="12"></line>
+                  <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+                </svg>
+              </div>
+              <span class="arch-node-title">2. Internet</span>
+              <span class="arch-node-desc">TCP/IP & IGW</span>
+            </div>
+
+            <!-- Connector -->
+            <div class="arch-connector" aria-hidden="true">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </div>
+
+            <!-- Node 3: AWS EC2 -->
+            <div class="arch-node">
+              <div class="arch-node-icon" style="background: rgba(255,153,0,0.15); color: var(--aws-orange);">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <rect x="2" y="2" width="20" height="8" rx="2" ry="2"></rect>
+                  <rect x="2" y="14" width="20" height="8" rx="2" ry="2"></rect>
+                </svg>
+              </div>
+              <span class="arch-node-title">3. AWS EC2</span>
+              <span class="arch-node-desc">Virtual Server</span>
+            </div>
+
+            <!-- Connector -->
+            <div class="arch-connector" aria-hidden="true">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </div>
+
+            <!-- Node 4: Linux -->
+            <div class="arch-node">
+              <div class="arch-node-icon">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <polyline points="4 17 10 11 4 5"></polyline>
+                  <line x1="12" y1="19" x2="20" y2="19"></line>
+                </svg>
+              </div>
+              <span class="arch-node-title">4. Linux</span>
+              <span class="arch-node-desc">Ubuntu LTS OS</span>
+            </div>
+
+            <!-- Connector -->
+            <div class="arch-connector" aria-hidden="true">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </div>
+
+            <!-- Node 5: Apache -->
+            <div class="arch-node">
+              <div class="arch-node-icon">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                </svg>
+              </div>
+              <span class="arch-node-title">5. Apache</span>
+              <span class="arch-node-desc">HTTP Web Server</span>
+            </div>
+
+            <!-- Connector -->
+            <div class="arch-connector" aria-hidden="true">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </div>
+
+            <!-- Node 6: Website -->
+            <div class="arch-node">
+              <div class="arch-node-icon" style="background: rgba(16,185,129,0.15); color: #10b981;">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                  <line x1="3" y1="9" x2="21" y2="9"></line>
+                  <line x1="9" y1="21" x2="9" y2="9"></line>
+                </svg>
+              </div>
+              <span class="arch-node-title">6. Website</span>
+              <span class="arch-node-desc">/var/www/html/</span>
+            </div>
+          </div>
+
+          <!-- Deepdive Explanations -->
+          <div class="arch-deepdive">
+            <div class="deepdive-grid">
+              <div class="deepdive-item">
+                <h4>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg>
+                  <span>Inbound Traffic</span>
+                </h4>
+                <p>Client sends HTTP GET request over public Internet routed through the AWS Internet Gateway (IGW) attached to the VPC.</p>
+              </div>
+              <div class="deepdive-item">
+                <h4>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+                  <span>Security Group Filter</span>
+                </h4>
+                <p>The stateful EC2 Security Group inspects traffic and permits incoming packets destined for Port 80 (HTTP) and Port 22 (SSH).</p>
+              </div>
+              <div class="deepdive-item">
+                <h4>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+                  <span>Content Delivery</span>
+                </h4>
+                <p>Apache web daemon processes the request, loads <code>index.html</code> from the root document directory, and sends HTTP 200 responses.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 3: AWS SERVICES -->
+    <section class="section fade-in-section" id="services">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-badge">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="2" y="2" width="20" height="8" rx="2" ry="2"></rect><rect x="2" y="14" width="20" height="8" rx="2" ry="2"></rect></svg>
+            <span>AWS Infrastructure</span>
+          </div>
+          <h2 class="section-title">AWS Services Utilized</h2>
+          <p class="section-desc">
+            Core AWS cloud building blocks configured to ensure high availability, security, and connectivity.
+          </p>
+        </div>
+
+        <div class="services-grid">
+          <!-- Card 1: EC2 -->
+          <div class="service-card">
+            <div class="service-badge-container">
+              <div class="service-icon">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <rect x="2" y="2" width="20" height="8" rx="2" ry="2"></rect>
+                  <rect x="2" y="14" width="20" height="8" rx="2" ry="2"></rect>
+                  <line x1="6" y1="6" x2="6.01" y2="6"></line>
+                  <line x1="6" y1="18" x2="6.01" y2="18"></line>
+                </svg>
+              </div>
+              <span class="status-badge active">Core Service</span>
+            </div>
+            <h3 class="service-title">Amazon EC2</h3>
+            <p class="service-desc">
+              Elastic Compute Cloud virtual machine instance (e.g. t2.micro or t3.micro) hosting the Ubuntu Linux operating system and web server stack.
+            </p>
+            <div class="service-meta">
+              <strong>Role:</strong> Primary compute & host environment
+            </div>
+          </div>
+
+          <!-- Card 2: Security Groups -->
+          <div class="service-card">
+            <div class="service-badge-container">
+              <div class="service-icon">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                  <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                </svg>
+              </div>
+              <span class="status-badge active">Network Security</span>
+            </div>
+            <h3 class="service-title">Security Groups</h3>
+            <p class="service-desc">
+              Virtual firewall regulating inbound and outbound traffic. Configured with Inbound Rules for Port 80 (HTTP - 0.0.0.0/0) and Port 22 (SSH - Admin IP).
+            </p>
+            <div class="service-meta">
+              <strong>Role:</strong> Inbound & outbound packet filtering
+            </div>
+          </div>
+
+          <!-- Card 3: Elastic IP -->
+          <div class="service-card">
+            <div class="service-badge-container">
+              <div class="service-icon">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <line x1="2" y1="12" x2="22" y2="12"></line>
+                  <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+                </svg>
+              </div>
+              <span class="status-badge planned">Optional / Planned</span>
+            </div>
+            <h3 class="service-title">Elastic IP</h3>
+            <p class="service-desc">
+              Static public IPv4 address allocated to the AWS account and attached to the EC2 instance to prevent IP address changes during instance stops/reboots.
+            </p>
+            <div class="service-meta">
+              <strong>Role:</strong> Persistent public IP address
+            </div>
+          </div>
+
+          <!-- Card 4: Amazon VPC -->
+          <div class="service-card">
+            <div class="service-badge-container">
+              <div class="service-icon">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
+                </svg>
+              </div>
+              <span class="status-badge active">Network Isolation</span>
+            </div>
+            <h3 class="service-title">Amazon VPC</h3>
+            <p class="service-desc">
+              Logically isolated virtual network with public subnets, route tables, and an attached Internet Gateway enabling bi-directional communication.
+            </p>
+            <div class="service-meta">
+              <strong>Role:</strong> Cloud networking perimeter
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 4: SERVER SETUP -->
+    <section class="section fade-in-section" id="setup">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-badge">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="4 17 10 11 4 5"></polyline><line x1="12" y1="19" x2="20" y2="19"></line></svg>
+            <span>Deployment Guide</span>
+          </div>
+          <h2 class="section-title">Server Setup Workflow</h2>
+          <p class="section-desc">
+            Step-by-step procedure to provision the EC2 instance, install Apache, and deploy website files.
+          </p>
+        </div>
+
+        <div class="setup-stepper">
+          <!-- Step 1 -->
+          <div class="step-card">
+            <div class="step-number">01</div>
+            <div class="step-content">
+              <div class="step-header">
+                <h3 class="step-title">Launch EC2 Instance</h3>
+                <span class="status-badge active">AWS Console / CLI</span>
+              </div>
+              <p class="step-desc">
+                In the AWS Management Console, launch an EC2 instance using the Ubuntu Server 26.04 LTS AMI on a Free Tier eligible instance type (e.g. <code>t2.micro</code> or <code>t3.micro</code>). Create or select an RSA key pair (.pem).
+              </p>
+            </div>
+          </div>
+
+          <!-- Step 2 -->
+          <div class="step-card">
+            <div class="step-number">02</div>
+            <div class="step-content">
+              <div class="step-header">
+                <h3 class="step-title">Connect Through SSH</h3>
+                <span class="status-badge active">Local Terminal</span>
+              </div>
+              <p class="step-desc">
+                Set correct permissions on your private key file (chmod 400) and connect securely via OpenSSH to the EC2 public IPv4 address.
+              </p>
+              <div class="code-box">
+                <code>chmod 400 your-key.pem &amp;&amp; ssh -i your-key.pem ubuntu@&lt;EC2_PUBLIC_IP&gt;</code>
+                <button class="copy-btn" data-code="chmod 400 your-key.pem && ssh -i your-key.pem ubuntu@<EC2_PUBLIC_IP>" aria-label="Copy SSH command">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                  <span>Copy</span>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Step 3 -->
+          <div class="step-card">
+            <div class="step-number">03</div>
+            <div class="step-content">
+              <div class="step-header">
+                <h3 class="step-title">Install Apache Web Server</h3>
+                <span class="status-badge active">Linux Shell</span>
+              </div>
+              <p class="step-desc">
+                Update the local apt package repository cache and install the Apache2 package daemon.
+              </p>
+              <div class="code-box">
+                <code>sudo apt-get update -y &amp;&amp; sudo apt-get install -y apache2</code>
+                <button class="copy-btn" data-code="sudo apt-get update -y && sudo apt-get install -y apache2" aria-label="Copy install command">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                  <span>Copy</span>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Step 4 -->
+          <div class="step-card">
+            <div class="step-number">04</div>
+            <div class="step-content">
+              <div class="step-header">
+                <h3 class="step-title">Start &amp; Enable Apache Service</h3>
+                <span class="status-badge active">Systemd</span>
+              </div>
+              <p class="step-desc">
+                Start the Apache daemon service immediately and configure systemd to start Apache automatically upon system reboot.
+              </p>
+              <div class="code-box">
+                <code>sudo systemctl enable apache2 &amp;&amp; sudo systemctl start apache2</code>
+                <button class="copy-btn" data-code="sudo systemctl enable apache2 && sudo systemctl start apache2" aria-label="Copy systemctl command">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                  <span>Copy</span>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Step 5 -->
+          <div class="step-card">
+            <div class="step-number">05</div>
+            <div class="step-content">
+              <div class="step-header">
+                <h3 class="step-title">Configure Security Group Rules</h3>
+                <span class="status-badge active">AWS Firewall</span>
+              </div>
+              <p class="step-desc">
+                Ensure the attached Security Group contains an Inbound Rule for <strong>HTTP (Port 80)</strong> with Source <code>0.0.0.0/0</code>, and <strong>SSH (Port 22)</strong> restricted to your IP address.
+              </p>
+            </div>
+          </div>
+
+          <!-- Step 6 -->
+          <div class="step-card">
+            <div class="step-number">06</div>
+            <div class="step-content">
+              <div class="step-header">
+                <h3 class="step-title">Deploy Website Files to /var/www/html/</h3>
+                <span class="status-badge active">Deployment</span>
+              </div>
+              <p class="step-desc">
+                Transfer website files using SCP or Git clone, and copy contents into Apache's document root directory <code>/var/www/html/</code>.
+              </p>
+              <div class="code-box">
+                <code>sudo cp -r index.html css/ js/ assets/ /var/www/html/</code>
+                <button class="copy-btn" data-code="sudo cp -r index.html css/ js/ assets/ /var/www/html/" aria-label="Copy deploy command">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                  <span>Copy</span>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Step 7 -->
+          <div class="step-card">
+            <div class="step-number">07</div>
+            <div class="step-content">
+              <div class="step-header">
+                <h3 class="step-title">Access Website Through Public IP</h3>
+                <span class="status-badge completed">Verification</span>
+              </div>
+              <p class="step-desc">
+                Open a web browser and navigate to <code>http://&lt;EC2_PUBLIC_IP&gt;</code> to verify the live website rendering.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 5: TECHNOLOGIES -->
+    <section class="section fade-in-section" id="technologies">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-badge">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
+            <span>Technology Stack</span>
+          </div>
+          <h2 class="section-title">Tools &amp; Technologies</h2>
+          <p class="section-desc">
+            A reliable, lightweight tech stack chosen for performance, portability, and zero external runtime dependencies.
+          </p>
+        </div>
+
+        <div class="tech-grid">
+          <div class="tech-card">
+            <div class="tech-icon-wrap" style="color: var(--aws-orange);">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="8" rx="2" ry="2"></rect><rect x="2" y="14" width="20" height="8" rx="2" ry="2"></rect></svg>
+            </div>
+            <span class="tech-name">AWS EC2</span>
+            <span class="tech-role">Cloud Infrastructure</span>
+          </div>
+
+          <div class="tech-card">
+            <div class="tech-icon-wrap">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="4 17 10 11 4 5"></polyline><line x1="12" y1="19" x2="20" y2="19"></line></svg>
+            </div>
+            <span class="tech-name">Linux (Ubuntu)</span>
+            <span class="tech-role">Operating System</span>
+          </div>
+
+          <div class="tech-card">
+            <div class="tech-icon-wrap" style="color: #ef4444;">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+            </div>
+            <span class="tech-name">Apache2</span>
+            <span class="tech-role">Web HTTP Server</span>
+          </div>
+
+          <div class="tech-card">
+            <div class="tech-icon-wrap" style="color: #e34f26;">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"></path><path d="M2 17l10 5 10-5"></path><path d="M2 12l10 5 10-5"></path></svg>
+            </div>
+            <span class="tech-name">HTML5</span>
+            <span class="tech-role">Semantic Markup</span>
+          </div>
+
+          <div class="tech-card">
+            <div class="tech-icon-wrap" style="color: #264de4;">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><path d="M8 12h8"></path><path d="M12 8v8"></path></svg>
+            </div>
+            <span class="tech-name">CSS3</span>
+            <span class="tech-role">Styling &amp; Theme</span>
+          </div>
+
+          <div class="tech-card">
+            <div class="tech-icon-wrap" style="color: #f7df1e;">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="9" y1="9" x2="9" y2="15"></line><line x1="15" y1="9" x2="15" y2="15"></line></svg>
+            </div>
+            <span class="tech-name">Vanilla JS</span>
+            <span class="tech-role">Interactivity</span>
+          </div>
+
+          <div class="tech-card">
+            <div class="tech-icon-wrap">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"></circle><line x1="1.05" y1="12" x2="7" y2="12"></line><line x1="17.01" y1="12" x2="22.96" y2="12"></line></svg>
+            </div>
+            <span class="tech-name">Git &amp; GitHub</span>
+            <span class="tech-role">Version Control</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 6: PROJECT STATUS -->
+    <section class="section fade-in-section" id="status">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-badge">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+            <span>Milestone Tracker</span>
+          </div>
+          <h2 class="section-title">Project Status</h2>
+          <p class="section-desc">
+            Transparent tracking of current development progress vs. scheduled AWS deployment phases.
+          </p>
+        </div>
+
+        <div class="status-tracker">
+          <div class="status-grid">
+            <div class="status-milestone done">
+              <div class="milestone-header">
+                <span class="milestone-title">Website Development</span>
+                <span class="status-badge completed">Completed</span>
+              </div>
+              <p class="milestone-desc">
+                Responsive HTML5, CSS3 styling, vanilla JS interactions, and server scripts built and verified.
+              </p>
+            </div>
+
+            <div class="status-milestone done">
+              <div class="milestone-header">
+                <span class="milestone-title">EC2 Instance</span>
+                <span class="status-badge completed">Deployed</span>
+              </div>
+              <p class="milestone-desc">
+                Provisioning Ubuntu EC2 instance, attaching key pair, and establishing SSH access.
+              </p>
+            </div>
+
+            <div class="status-milestone done">
+              <div class="milestone-header">
+                <span class="milestone-title">Ubuntu Server</span>
+                <span class="status-badge completed">Running</span>
+              </div>
+              <p class="milestone-desc">
+                Ubuntu 26.04 LTS is successfully installed and operational.
+              </p>
+            </div>
+
+            <div class="status-milestone done">
+              <div class="milestone-header">
+                <span class="milestone-title">Apache2</span>
+                <span class="status-badge completed">Running</span>
+              </div>
+              <p class="milestone-desc">
+                Automated Apache2 setup, virtual host configuration, and permissions provisioning in <code>/var/www/html/</code>.
+              </p>
+            </div>
+            
+            <div class="status-milestone done">
+              <div class="milestone-header">
+                <span class="milestone-title">Website Deployment</span>
+                <span class="status-badge completed">Completed</span>
+              </div>
+              <p class="milestone-desc">
+                Files transferred and actively hosted from the document root.
+              </p>
+            </div>
+
+            <div class="status-milestone done">
+              <div class="milestone-header">
+                <span class="milestone-title">Public HTTP Access</span>
+                <span class="status-badge completed">Working</span>
+              </div>
+              <p class="milestone-desc">
+                Live internet verification via public IPv4 address and Security Group Port 80 ingress testing.
+              </p>
+            </div>
+            
+            <div class="status-milestone pending">
+              <div class="milestone-header">
+                <span class="milestone-title">HTTPS/SSL</span>
+                <span class="status-badge planned">Planned</span>
+              </div>
+              <p class="milestone-desc">
+                SSL certificate installation to secure traffic.
+              </p>
+            </div>
+
+            <div class="status-milestone pending">
+              <div class="milestone-header">
+                <span class="milestone-title">Elastic IP</span>
+                <span class="status-badge planned">Optional/Planned</span>
+              </div>
+              <p class="milestone-desc">
+                Persistent IPv4 address allocation.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 7: LEARNING OUTCOMES -->
+    <section class="section fade-in-section" id="outcomes">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-badge">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg>
+            <span>Core Competencies</span>
+          </div>
+          <h2 class="section-title">Learning Outcomes</h2>
+          <p class="section-desc">
+            Key cloud architecture and system administration skills demonstrated throughout this project.
+          </p>
+        </div>
+
+        <div class="outcomes-grid">
+          <div class="outcome-card">
+            <div class="outcome-number">01</div>
+            <h3 class="outcome-title">EC2 Instance Management</h3>
+            <p class="outcome-desc">
+              Gained practical experience launching, configuring, sizing, and managing Amazon EC2 instances within the AWS Management Console.
+            </p>
+          </div>
+
+          <div class="outcome-card">
+            <div class="outcome-number">02</div>
+            <h3 class="outcome-title">Linux Server Administration</h3>
+            <p class="outcome-desc">
+              Mastered essential Linux command line utilities, apt package management, file system permissions, and directory hierarchies.
+            </p>
+          </div>
+
+          <div class="outcome-card">
+            <div class="outcome-number">03</div>
+            <h3 class="outcome-title">Secure SSH Remote Access</h3>
+            <p class="outcome-desc">
+              Applied industry-standard public key cryptography for secure remote shell access using OpenSSH and IAM key pairs.
+            </p>
+          </div>
+
+          <div class="outcome-card">
+            <div class="outcome-number">04</div>
+            <h3 class="outcome-title">Web Server Configuration</h3>
+            <p class="outcome-desc">
+              Learned how to install, enable, start, and monitor Apache HTTP Server using systemd service management.
+            </p>
+          </div>
+
+          <div class="outcome-card">
+            <div class="outcome-number">05</div>
+            <h3 class="outcome-title">Security Groups &amp; Networking</h3>
+            <p class="outcome-desc">
+              Configured stateful firewall ingress rules to control access to TCP Port 80 (HTTP) and TCP Port 22 (SSH).
+            </p>
+          </div>
+
+          <div class="outcome-card">
+            <div class="outcome-number">06</div>
+            <h3 class="outcome-title">HTTP &amp; Cloud Deployment</h3>
+            <p class="outcome-desc">
+              Understood end-to-end HTTP request/response lifecycles, DNS resolution, and automated cloud asset deployment.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- SECTION 8: FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="footer-brand-title">
+            <div class="brand-icon" style="width: 1.85rem; height: 1.85rem;">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <rect x="2" y="2" width="20" height="8" rx="2" ry="2"></rect>
+                <rect x="2" y="14" width="20" height="8" rx="2" ry="2"></rect>
+              </svg>
+            </div>
+            <span>EC2 Web Server Portfolio</span>
+          </div>
+          <p class="footer-desc">
+            AWS Portfolio Project 3 demonstrating foundational cloud computing, Linux systems administration, and web server configuration on Amazon Web Services.
+          </p>
+        </div>
+
+        <div class="footer-links-col">
+          <h5>Quick Navigation</h5>
+          <ul>
+            <li><a href="#about">About Project</a></li>
+            <li><a href="#architecture">Architecture</a></li>
+            <li><a href="#services">AWS Services</a></li>
+            <li><a href="#setup">Server Setup</a></li>
+            <li><a href="#technologies">Technologies</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-links-col">
+          <h5>Portfolio &amp; Links</h5>
+          <ul>
+            <li><a href="https://github.com/your-username/EC2-Web-Server" target="_blank" rel="noopener noreferrer">GitHub Repository</a></li>
+            <li><a href="https://aws.amazon.com/ec2/" target="_blank" rel="noopener noreferrer">AWS EC2 Docs</a></li>
+            <li><a href="https://httpd.apache.org/" target="_blank" rel="noopener noreferrer">Apache HTTP Server</a></li>
+            <li><a href="#status">Project Status</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <span>&copy; 2026 AWS Cloud Computing Portfolio &bull; Project 3: EC2-Based Web Server</span>
+        <span>Author: <strong style="color: var(--text-primary);">Arnav</strong> (Cloud Engineering Portfolio)</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Back to Top Floating Button -->
+  <button class="back-to-top" id="back-to-top" aria-label="Back to top">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+      <line x1="12" y1="19" x2="12" y2="5"></line>
+      <polyline points="5 12 12 5 19 12"></polyline>
+    </svg>
+  </button>
+
+  <script src="js/script.js"></script>
+</body>
+</html>
