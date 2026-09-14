@@ -118,6 +118,7 @@
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 5rem;
   font-size: 16px;
   -webkit-text-size-adjust: 100%;
 }
@@ -127,7 +128,7 @@ body {
   background-color: var(--bg-primary);
   color: var(--text-primary);
   line-height: 1.6;
-  transition: background-color var(--transition-base), color var(--transition-base);
+  transition: background-color 0.4s ease, color 0.4s ease;
   overflow-x: hidden;
   position: relative;
 }
@@ -234,7 +235,7 @@ img, svg {
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
   border-bottom: 1px solid var(--border-color);
-  transition: background-color var(--transition-base), border-color var(--transition-base);
+  transition: background-color 0.4s ease, border-color 0.4s ease;
 }
 
 .nav-container {
@@ -287,7 +288,7 @@ img, svg {
   color: var(--text-secondary);
   padding: 0.5rem 0.85rem;
   border-radius: var(--radius-md);
-  transition: color var(--transition-fast), background-color var(--transition-fast);
+  transition: color 0.2s ease, background-color 0.2s ease, transform 0.2s ease;
   position: relative;
 }
 
@@ -322,12 +323,17 @@ img, svg {
   background: var(--bg-tertiary);
   border: 1px solid var(--border-color);
   color: var(--text-primary);
-  transition: all var(--transition-fast);
+  transition: background-color 0.25s ease, border-color 0.25s ease, transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .theme-toggle-btn:hover {
   border-color: var(--text-muted);
-  transform: translateY(-1px);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-sm);
+}
+
+.theme-toggle-btn:active {
+  transform: translateY(0);
 }
 
 .mobile-menu-btn {
@@ -342,6 +348,7 @@ img, svg {
   background: var(--bg-tertiary);
   border: 1px solid var(--border-color);
   color: var(--text-primary);
+  transition: background-color 0.25s ease, border-color 0.25s ease;
 }
 
 .mobile-menu-btn span {
@@ -350,7 +357,7 @@ img, svg {
   width: 100%;
   background-color: var(--text-primary);
   border-radius: 2px;
-  transition: all var(--transition-fast);
+  transition: all 0.25s ease;
 }
 
 /* --------------------------------------------------------------------------
@@ -442,7 +449,7 @@ img, svg {
   font-size: 0.95rem;
   font-weight: 600;
   border-radius: var(--radius-md);
-  transition: all var(--transition-fast);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.25s ease, border-color 0.25s ease;
   text-decoration: none;
 }
 
@@ -457,6 +464,11 @@ img, svg {
   box-shadow: 0 6px 20px rgba(37, 99, 235, 0.45);
 }
 
+.btn-primary:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 10px rgba(37, 99, 235, 0.35);
+}
+
 .btn-secondary {
   background: var(--bg-card);
   color: var(--text-primary);
@@ -468,6 +480,10 @@ img, svg {
   background: var(--bg-tertiary);
   border-color: var(--text-muted);
   transform: translateY(-2px);
+}
+
+.btn-secondary:active {
+  transform: translateY(0);
 }
 
 .btn-sm {
@@ -596,17 +612,17 @@ img, svg {
 
 .card {
   background: var(--bg-card);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   border: 1px solid var(--border-color);
   border-radius: var(--radius-lg);
   padding: 2rem;
   box-shadow: var(--shadow-md);
-  transition: transform var(--transition-base), box-shadow var(--transition-base), border-color var(--transition-base);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease, background-color 0.4s ease;
 }
 
 .card:hover {
-  transform: translateY(-4px);
+  transform: translateY(-5px);
   box-shadow: var(--shadow-lg);
   border-color: rgba(59, 130, 246, 0.4);
 }
@@ -666,12 +682,15 @@ img, svg {
    -------------------------------------------------------------------------- */
 .architecture-container {
   background: var(--bg-card);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   border: 1px solid var(--border-color);
   border-radius: var(--radius-lg);
   padding: 3rem 2rem;
   box-shadow: var(--shadow-md);
   position: relative;
   overflow: hidden;
+  transition: background-color 0.4s ease, border-color 0.4s ease;
 }
 
 .arch-flow {
@@ -689,18 +708,20 @@ img, svg {
   flex-direction: column;
   align-items: center;
   text-align: center;
-  background: var(--bg-primary);
+  background: var(--bg-card);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   border: 1px solid var(--border-color);
   border-radius: var(--radius-md);
   padding: 1.5rem 1rem;
-  transition: all var(--transition-base);
+  transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease, background-color 0.4s ease;
   position: relative;
   z-index: 2;
 }
 
 .arch-node:hover {
   border-color: var(--accent-blue);
-  transform: translateY(-4px);
+  transform: translateY(-5px);
   box-shadow: 0 8px 20px rgba(37, 99, 235, 0.15);
 }
 
@@ -786,19 +807,21 @@ img, svg {
 
 .service-card {
   background: var(--bg-card);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   border: 1px solid var(--border-color);
   border-radius: var(--radius-lg);
   padding: 1.75rem 1.5rem;
   display: flex;
   flex-direction: column;
-  transition: all var(--transition-base);
+  transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease, background-color 0.4s ease;
   position: relative;
 }
 
 .service-card:hover {
-  transform: translateY(-4px);
+  transform: translateY(-5px);
   border-color: var(--aws-orange);
-  box-shadow: var(--shadow-glow-aws);
+  box-shadow: var(--shadow-glow-aws), var(--shadow-md);
 }
 
 .service-badge-container {
@@ -883,13 +906,16 @@ img, svg {
   grid-template-columns: 3.5rem 1fr;
   gap: 1.5rem;
   background: var(--bg-card);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   border: 1px solid var(--border-color);
   border-radius: var(--radius-lg);
   padding: 1.75rem;
-  transition: all var(--transition-base);
+  transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease, background-color 0.4s ease;
 }
 
 .step-card:hover {
+  transform: translateY(-3px);
   border-color: var(--accent-blue);
   box-shadow: var(--shadow-md);
 }
@@ -967,7 +993,7 @@ img, svg {
   padding: 0.3rem 0.65rem;
   border-radius: var(--radius-sm);
   font-size: 0.75rem;
-  transition: all var(--transition-fast);
+  transition: background-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
   margin-left: 1rem;
   flex-shrink: 0;
 }
@@ -975,6 +1001,11 @@ img, svg {
 .copy-btn:hover {
   background: rgba(255, 255, 255, 0.2);
   color: #ffffff;
+  transform: translateY(-1px);
+}
+
+.copy-btn:active {
+  transform: translateY(0);
 }
 
 /* --------------------------------------------------------------------------
@@ -988,6 +1019,8 @@ img, svg {
 
 .tech-card {
   background: var(--bg-card);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   border: 1px solid var(--border-color);
   border-radius: var(--radius-md);
   padding: 1.5rem 1rem;
@@ -995,11 +1028,11 @@ img, svg {
   display: flex;
   flex-direction: column;
   align-items: center;
-  transition: all var(--transition-base);
+  transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease, background-color 0.4s ease;
 }
 
 .tech-card:hover {
-  transform: translateY(-4px);
+  transform: translateY(-5px);
   border-color: var(--accent-blue);
   box-shadow: var(--shadow-md);
 }
@@ -1037,10 +1070,13 @@ img, svg {
    -------------------------------------------------------------------------- */
 .status-tracker {
   background: var(--bg-card);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   border: 1px solid var(--border-color);
   border-radius: var(--radius-lg);
   padding: 2.5rem;
   box-shadow: var(--shadow-md);
+  transition: background-color 0.4s ease;
 }
 
 .status-grid {
@@ -1055,9 +1091,17 @@ img, svg {
   gap: 0.75rem;
   padding: 1.25rem;
   border-radius: var(--radius-md);
-  background: var(--bg-tertiary);
+  background: var(--bg-card);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   border: 1px solid var(--border-color);
   position: relative;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.4s ease;
+}
+
+.status-milestone:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-md);
 }
 
 .status-milestone.done {
@@ -1096,14 +1140,16 @@ img, svg {
 
 .outcome-card {
   background: var(--bg-card);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   border: 1px solid var(--border-color);
   border-radius: var(--radius-lg);
   padding: 1.75rem;
-  transition: all var(--transition-base);
+  transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease, background-color 0.4s ease;
 }
 
 .outcome-card:hover {
-  transform: translateY(-3px);
+  transform: translateY(-5px);
   border-color: var(--accent-indigo);
   box-shadow: var(--shadow-md);
 }
@@ -1141,6 +1187,7 @@ img, svg {
   border-top: 1px solid var(--border-color);
   padding: 4rem 0 2rem 0;
   margin-top: 4rem;
+  transition: background-color 0.4s ease, border-color 0.4s ease;
 }
 
 .footer-grid {
@@ -1325,16 +1372,28 @@ img, svg {
     left: 0;
     right: 0;
     background: var(--bg-secondary);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
     border-bottom: 1px solid var(--border-color);
     flex-direction: column;
     padding: 1.5rem;
     gap: 0.75rem;
     box-shadow: var(--shadow-lg);
-    display: none;
+    /* Smooth reveal animation instead of display:none toggle */
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease;
+    /* Keep display flex so transition works */
+    display: flex;
+    pointer-events: none;
   }
   
   .nav-links.open {
-    display: flex;
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+    pointer-events: auto;
   }
   
   .mobile-menu-btn {
@@ -1386,5 +1445,141 @@ img, svg {
     width: 2.5rem;
     height: 2.5rem;
     font-size: 1rem;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   17. Hero Section Entrance Animations
+   -------------------------------------------------------------------------- */
+.hero-pill {
+  opacity: 0;
+  transform: translateY(12px);
+  animation: heroFadeIn 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.1s forwards;
+}
+
+.hero-title {
+  opacity: 0;
+  transform: translateY(12px);
+  animation: heroFadeIn 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.2s forwards;
+}
+
+.hero-subtitle {
+  opacity: 0;
+  transform: translateY(12px);
+  animation: heroFadeIn 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.3s forwards;
+}
+
+.hero-cta-group {
+  opacity: 0;
+  transform: translateY(12px);
+  animation: heroFadeIn 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.4s forwards;
+}
+
+.hero-stats {
+  opacity: 0;
+  transform: translateY(12px);
+  animation: heroFadeIn 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.5s forwards;
+}
+
+.hero-visual {
+  opacity: 0;
+  transform: translateY(16px) scale(0.98);
+  animation: heroVisualIn 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.25s forwards;
+}
+
+@keyframes heroFadeIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes heroVisualIn {
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   18. Accessibility: Reduced Motion
+   -------------------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .hero-pill,
+  .hero-title,
+  .hero-subtitle,
+  .hero-cta-group,
+  .hero-stats,
+  .hero-visual {
+    opacity: 1;
+    transform: none;
+    animation: none;
+  }
+
+  .fade-in-section {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .card,
+  .service-card,
+  .arch-node,
+  .tech-card,
+  .step-card,
+  .status-milestone,
+  .outcome-card {
+    transition: border-color 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+  }
+
+  .card:hover,
+  .service-card:hover,
+  .arch-node:hover,
+  .tech-card:hover,
+  .step-card:hover,
+  .status-milestone:hover,
+  .outcome-card:hover {
+    transform: none;
+  }
+
+  .btn,
+  .btn-primary,
+  .btn-secondary,
+  .copy-btn,
+  .theme-toggle-btn,
+  .nav-link {
+    transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+  }
+
+  .btn:hover,
+  .btn-primary:hover,
+  .btn-secondary:hover,
+  .copy-btn:hover,
+  .theme-toggle-btn:hover {
+    transform: none;
+  }
+
+  .arch-connector {
+    animation: none;
+  }
+
+  .pill-dot {
+    animation: none;
+  }
+
+  .back-to-top {
+    transition: opacity 0.2s ease, visibility 0.2s ease;
+  }
+
+  .toast {
+    transition: opacity 0.2s ease, visibility 0.2s ease;
+  }
+
+  .nav-links {
+    transition: none;
   }
 }
