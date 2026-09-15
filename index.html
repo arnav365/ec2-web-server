@@ -100,7 +100,7 @@
                 <span class="stat-label">Web Engine</span>
               </div>
               <div class="stat-item">
-                <span class="stat-value">Ubuntu 26.04</span>
+                <span class="stat-value">Ubuntu 24.04 LTS</span>
                 <span class="stat-label">Linux OS</span>
               </div>
             </div>
@@ -553,7 +553,7 @@
                 <span class="status-badge active">AWS Console / CLI</span>
               </div>
               <p class="step-desc">
-                In the AWS Management Console, launch an EC2 instance using the Ubuntu Server 26.04 LTS AMI on a Free Tier eligible instance type (e.g. <code>t2.micro</code> or <code>t3.micro</code>). Create or select an RSA key pair (.pem).
+                In the AWS Management Console, launch an EC2 instance using the Ubuntu Server 24.04 LTS AMI on a Free Tier eligible instance type (e.g. <code>t2.micro</code> or <code>t3.micro</code>). Create or select an RSA key pair (.pem).
               </p>
             </div>
           </div>
@@ -757,7 +757,7 @@
           </div>
           <h2 class="section-title">Project Status</h2>
           <p class="section-desc">
-            Transparent tracking of current development progress vs. scheduled AWS deployment phases.
+            All deployment phases successfully completed. Website is live and publicly accessible on AWS EC2.
           </p>
         </div>
 
@@ -769,77 +769,37 @@
                 <span class="status-badge completed">Completed</span>
               </div>
               <p class="milestone-desc">
-                Responsive HTML5, CSS3 styling, vanilla JS interactions, and server scripts built and verified.
+                Responsive HTML5, CSS3 styling, vanilla JavaScript interactions, and project components built and verified.
               </p>
             </div>
 
             <div class="status-milestone done">
               <div class="milestone-header">
-                <span class="milestone-title">EC2 Instance</span>
-                <span class="status-badge completed">Deployed</span>
-              </div>
-              <p class="milestone-desc">
-                Provisioning Ubuntu EC2 instance, attaching key pair, and establishing SSH access.
-              </p>
-            </div>
-
-            <div class="status-milestone done">
-              <div class="milestone-header">
-                <span class="milestone-title">Ubuntu Server</span>
-                <span class="status-badge completed">Running</span>
-              </div>
-              <p class="milestone-desc">
-                Ubuntu 26.04 LTS is successfully installed and operational.
-              </p>
-            </div>
-
-            <div class="status-milestone done">
-              <div class="milestone-header">
-                <span class="milestone-title">Apache2</span>
-                <span class="status-badge completed">Running</span>
-              </div>
-              <p class="milestone-desc">
-                Automated Apache2 setup, virtual host configuration, and permissions provisioning in <code>/var/www/html/</code>.
-              </p>
-            </div>
-            
-            <div class="status-milestone done">
-              <div class="milestone-header">
-                <span class="milestone-title">Website Deployment</span>
+                <span class="milestone-title">EC2 Deployment</span>
                 <span class="status-badge completed">Completed</span>
               </div>
               <p class="milestone-desc">
-                Files transferred and actively hosted from the document root.
+                AWS EC2 t3.micro instance deployed in Mumbai using Ubuntu 24.04 LTS with SSH access configured through the project Security Group.
               </p>
             </div>
 
             <div class="status-milestone done">
               <div class="milestone-header">
-                <span class="milestone-title">Public HTTP Access</span>
-                <span class="status-badge completed">Working</span>
+                <span class="milestone-title">Apache Configuration</span>
+                <span class="status-badge completed">Completed</span>
               </div>
               <p class="milestone-desc">
-                Live internet verification via public IPv4 address and Security Group Port 80 ingress testing.
-              </p>
-            </div>
-            
-            <div class="status-milestone pending">
-              <div class="milestone-header">
-                <span class="milestone-title">HTTPS/SSL</span>
-                <span class="status-badge planned">Planned</span>
-              </div>
-              <p class="milestone-desc">
-                SSL certificate installation to secure traffic.
+                Apache2 installed, enabled, and running successfully. Website files deployed to <code>/var/www/html/</code>.
               </p>
             </div>
 
-            <div class="status-milestone pending">
+            <div class="status-milestone done">
               <div class="milestone-header">
-                <span class="milestone-title">Elastic IP</span>
-                <span class="status-badge planned">Optional/Planned</span>
+                <span class="milestone-title">Public Website</span>
+                <span class="status-badge completed">Completed</span>
               </div>
               <p class="milestone-desc">
-                Persistent IPv4 address allocation.
+                Website successfully deployed and publicly accessible through the EC2 public IPv4 address over HTTP Port 80.
               </p>
             </div>
           </div>

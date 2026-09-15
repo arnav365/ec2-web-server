@@ -2,7 +2,7 @@
 
 [![AWS EC2](https://img.shields.io/badge/AWS-EC2-orange.svg)](https://aws.amazon.com/ec2/)
 [![Server](https://img.shields.io/badge/Web_Server-Apache2-red.svg)](https://httpd.apache.org/)
-[![OS](https://img.shields.io/badge/Linux-Ubuntu_26.04_LTS-E95420.svg)](https://ubuntu.com/)
+[![OS](https://img.shields.io/badge/Linux-Ubuntu_24.04_LTS-E95420.svg)](https://ubuntu.com/)
 [![Tech](https://img.shields.io/badge/Stack-HTML5%20%7C%20CSS3%20%7C%20Vanilla_JS-blue.svg)](#technologies)
 [![Status](https://img.shields.io/badge/Project_Status-Deployed-brightgreen.svg)](#project-status)
 
@@ -36,7 +36,7 @@ Internet
    ↓
 AWS EC2
    ↓
-Ubuntu 26.04 LTS
+Ubuntu 24.04 LTS
    ↓
 Apache2
    ↓
@@ -52,7 +52,7 @@ Project 3 Website
 | Technology | Category | Purpose |
 | :--- | :--- | :--- |
 | **Amazon EC2** | Cloud Infrastructure | Virtual compute instance hosting the Linux environment |
-| **Ubuntu Linux 26.04** | Operating System | Host OS providing system services and package management |
+| **Ubuntu Linux 24.04 LTS** | Operating System | Host OS providing system services and package management |
 | **Apache2** | Web Server | Open-source HTTP daemon serving static assets |
 | **HTML5** | Frontend | Semantic markup and accessibility structure |
 | **CSS3** | Frontend | Custom styling, glassmorphism, responsive grid & light/dark theme |
@@ -128,13 +128,13 @@ Follow these steps to deploy this project to an AWS EC2 instance:
 2. Navigate to **EC2 Dashboard** ➔ **Launch Instance**.
 3. Configure the following parameters:
    - **Name:** `EC2-Web-Server-Portfolio`
-   - **Application and OS Images (AMI):** `Ubuntu Server 26.04 LTS (HVM), SSD Volume Type`
+   - **Application and OS Images (AMI):** `Ubuntu Server 24.04 LTS (HVM), SSD Volume Type`
    - **Instance Type:** `t3.micro` (Free Tier eligible)
    - **Key Pair:** Create or select an existing `.pem` RSA key pair (e.g., `ec2-portfolio-key.pem`). Keep this private key secure and DO NOT commit it to version control.
 
 ### Deployment Details
 - **Platform:** AWS EC2
-- **OS:** Ubuntu 26.04 LTS
+- **OS:** Ubuntu 24.04 LTS
 - **Instance Type:** t3.micro
 - **Web Server:** Apache2
 - **Firewall:** AWS Security Group
