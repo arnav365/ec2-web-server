@@ -439,7 +439,7 @@
           </div>
           <h2 class="section-title">AWS Services Utilized</h2>
           <p class="section-desc">
-            Core AWS cloud building blocks configured to ensure high availability, security, and connectivity.
+            Core AWS cloud building blocks configured to ensure a reliable cloud-based web hosting environment.
           </p>
         </div>
 
@@ -459,10 +459,24 @@
             </div>
             <h3 class="service-title">Amazon EC2</h3>
             <p class="service-desc">
-              Elastic Compute Cloud virtual machine instance (e.g. t2.micro or t3.micro) hosting the Ubuntu Linux operating system and web server stack.
+              <strong>Purpose:</strong> Provides the virtual Linux server where the project website is hosted.
             </p>
-            <div class="service-meta">
-              <strong>Role:</strong> Primary compute & host environment
+            <div style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 1rem;">
+              <strong>Project Configuration:</strong><br>
+              &bull; Instance Name: EC2-Web-Server<br>
+              &bull; Instance Type: t3.micro<br>
+              &bull; Region: Mumbai (ap-south-1)<br>
+              &bull; Operating System: Ubuntu 24.04 LTS<br>
+              &bull; Storage: 8 GiB<br>
+              &bull; Public IPv4: 3.7.254.236<br>
+              &bull; Web Server: Apache2
+            </div>
+            <div style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 1rem;">
+              <strong>How it is used:</strong> The EC2 instance runs Ubuntu Linux and Apache2. The website files are deployed into <code>/var/www/html/</code>. The server receives HTTP requests and Apache serves the website to users.
+            </div>
+            <div class="service-meta" style="flex-direction: column; align-items: flex-start; gap: 0.5rem; border-top: 1px solid var(--border-color); padding-top: 0.75rem;">
+              <div><strong>Role:</strong> Primary compute and web hosting environment.</div>
+              <div style="color: var(--aws-orange);"><strong>Viva Point:</strong> "EC2 provides the virtual machine on which the Linux operating system and Apache web server run."</div>
             </div>
           </div>
 
@@ -479,14 +493,57 @@
             </div>
             <h3 class="service-title">Security Groups</h3>
             <p class="service-desc">
-              Virtual firewall regulating inbound and outbound traffic. Configured with Inbound Rules for Port 80 (HTTP - 0.0.0.0/0) and Port 22 (SSH - Admin IP).
+              <strong>Purpose:</strong> Acts as a virtual firewall controlling inbound and outbound traffic for the EC2 instance.
             </p>
-            <div class="service-meta">
-              <strong>Role:</strong> Inbound & outbound packet filtering
+            <div style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 1rem;">
+              <strong>Actual Inbound Rules:</strong><br>
+              &bull; <strong>HTTP (Port 80) Source: 0.0.0.0/0</strong><br>
+              &nbsp;&nbsp;Purpose: Allows public users to access the website.<br>
+              &bull; <strong>SSH (Port 22) Source: My IP</strong><br>
+              &nbsp;&nbsp;Purpose: Allows secure administrative access to the EC2 server.
+            </div>
+            <div style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 1rem;">
+              <strong>Security Group Name:</strong> EC2-Web-Server-SG
+            </div>
+            <div class="service-meta" style="flex-direction: column; align-items: flex-start; gap: 0.5rem; border-top: 1px solid var(--border-color); padding-top: 0.75rem;">
+              <div><strong>Role:</strong> Controls network access to the EC2 instance.</div>
+              <div style="color: var(--aws-orange);"><strong>Viva Point:</strong> "Security Groups provide instance-level traffic filtering and ensure that only required ports are accessible."</div>
             </div>
           </div>
 
-          <!-- Card 3: Elastic IP -->
+          <!-- Card 3: Amazon VPC -->
+          <div class="service-card">
+            <div class="service-badge-container">
+              <div class="service-icon">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
+                </svg>
+              </div>
+              <span class="status-badge active">Network Environment</span>
+            </div>
+            <h3 class="service-title">Amazon VPC</h3>
+            <p class="service-desc">
+              <strong>Purpose:</strong> Provides the logical networking environment in which the EC2 instance operates.
+            </p>
+            <div style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 1rem;">
+              <strong>Project Context:</strong><br>
+              &bull; EC2 runs inside an AWS VPC<br>
+              &bull; The instance has a private IPv4 address<br>
+              &bull; The instance also has a public IPv4 address<br>
+              &bull; Internet connectivity allows public HTTP access<br>
+              &bull; Security Group controls traffic to the instance
+            </div>
+            <div style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 1rem;">
+              <strong>Actual EC2 Private IPv4:</strong> 172.31.15.90<br>
+              <strong>Public IPv4:</strong> 3.7.254.236
+            </div>
+            <div class="service-meta" style="flex-direction: column; align-items: flex-start; gap: 0.5rem; border-top: 1px solid var(--border-color); padding-top: 0.75rem;">
+              <div><strong>Role:</strong> Provides the networking foundation for the EC2 deployment.</div>
+              <div style="color: var(--aws-orange);"><strong>Viva Point:</strong> "VPC provides the isolated networking environment for AWS resources, while the Security Group controls traffic reaching the EC2 instance."</div>
+            </div>
+          </div>
+
+          <!-- Card 4: Elastic IP -->
           <div class="service-card">
             <div class="service-badge-container">
               <div class="service-icon">
@@ -500,29 +557,66 @@
             </div>
             <h3 class="service-title">Elastic IP</h3>
             <p class="service-desc">
-              Static public IPv4 address allocated to the AWS account and attached to the EC2 instance to prevent IP address changes during instance stops/reboots.
+              <strong>Purpose:</strong> Provides a persistent public IPv4 address that remains associated with an AWS resource instead of changing when an EC2 instance is stopped and started.
             </p>
-            <div class="service-meta">
-              <strong>Role:</strong> Persistent public IP address
+            <div style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 1rem;">
+              <strong>Project Status:</strong> Not currently allocated.
+            </div>
+            <div style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 1rem;">
+              <strong>Current Project:</strong> The EC2 instance uses an automatically assigned public IPv4 address.
+            </div>
+            <div class="service-meta" style="flex-direction: column; align-items: flex-start; gap: 0.5rem; border-top: 1px solid var(--border-color); padding-top: 0.75rem;">
+              <div><strong>Role:</strong> Optional future improvement for maintaining a stable public IP.</div>
+              <div style="color: var(--aws-orange);"><strong>Viva Point:</strong> "An Elastic IP could be used in the future if the project requires a persistent public IPv4 address."</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- How they work together & Why these services -->
+        <div style="margin-top: 3rem; display: flex; flex-direction: column; gap: 2rem; background: var(--bg-secondary); padding: 1.5rem; border-radius: 12px; border: 1px solid var(--border-color); box-shadow: 0 8px 32px rgba(0,0,0,0.2); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);">
+          
+          <div>
+            <h3 style="font-size: 1.25rem; font-weight: 600; margin-bottom: 1.5rem; color: var(--text-primary); text-align: center;">How They Work Together</h3>
+            <div style="display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 0.75rem; font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; color: var(--text-secondary);">
+              <span style="background: var(--bg-tertiary); padding: 0.5rem 1rem; border-radius: 6px; border: 1px solid var(--border-color);">Internet User</span>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+              <span style="background: var(--bg-tertiary); padding: 0.5rem 1rem; border-radius: 6px; border: 1px solid var(--border-color);">Public IPv4</span>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+              <span style="background: var(--bg-tertiary); padding: 0.5rem 1rem; border-radius: 6px; border: 1px solid var(--border-color);">Amazon VPC</span>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+              <span style="background: var(--bg-tertiary); padding: 0.5rem 1rem; border-radius: 6px; border: 1px solid var(--border-color);">Security Group</span>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+              <span style="background: var(--bg-tertiary); padding: 0.5rem 1rem; border-radius: 6px; border: 1px solid var(--border-color);">Amazon EC2</span>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+              <span style="background: var(--bg-tertiary); padding: 0.5rem 1rem; border-radius: 6px; border: 1px solid var(--border-color);">Ubuntu 24.04 LTS</span>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+              <span style="background: var(--bg-tertiary); padding: 0.5rem 1rem; border-radius: 6px; border: 1px solid var(--border-color);">Apache2</span>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+              <span style="background: rgba(16,185,129,0.1); padding: 0.5rem 1rem; border-radius: 6px; border: 1px solid #10b981; color: #10b981; font-weight: 600;">Project Website</span>
             </div>
           </div>
 
-          <!-- Card 4: Amazon VPC -->
-          <div class="service-card">
-            <div class="service-badge-container">
-              <div class="service-icon">
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
-                </svg>
+          <hr style="border: 0; border-top: 1px solid var(--border-color);">
+
+          <div>
+            <h3 style="font-size: 1.25rem; font-weight: 600; margin-bottom: 1.5rem; color: var(--text-primary); text-align: center;">Why These Services?</h3>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem;">
+              <div style="text-align: center; padding: 1.25rem; background: var(--bg-primary); border-radius: 8px; border: 1px solid var(--border-color); box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+                <strong style="color: var(--text-primary); display: block; margin-bottom: 0.5rem;">EC2</strong>
+                <span style="font-size: 0.85rem; color: var(--text-secondary);">Compute + server hosting</span>
               </div>
-              <span class="status-badge active">Network Isolation</span>
-            </div>
-            <h3 class="service-title">Amazon VPC</h3>
-            <p class="service-desc">
-              Logically isolated virtual network with public subnets, route tables, and an attached Internet Gateway enabling bi-directional communication.
-            </p>
-            <div class="service-meta">
-              <strong>Role:</strong> Cloud networking perimeter
+              <div style="text-align: center; padding: 1.25rem; background: var(--bg-primary); border-radius: 8px; border: 1px solid var(--border-color); box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+                <strong style="color: var(--text-primary); display: block; margin-bottom: 0.5rem;">Security Group</strong>
+                <span style="font-size: 0.85rem; color: var(--text-secondary);">Network access control</span>
+              </div>
+              <div style="text-align: center; padding: 1.25rem; background: var(--bg-primary); border-radius: 8px; border: 1px solid var(--border-color); box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+                <strong style="color: var(--text-primary); display: block; margin-bottom: 0.5rem;">VPC</strong>
+                <span style="font-size: 0.85rem; color: var(--text-secondary);">Cloud networking environment</span>
+              </div>
+              <div style="text-align: center; padding: 1.25rem; background: var(--bg-primary); border-radius: 8px; border: 1px solid var(--border-color); box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+                <strong style="color: var(--text-primary); display: block; margin-bottom: 0.5rem;">Elastic IP</strong>
+                <span style="font-size: 0.85rem; color: var(--text-secondary);">Optional persistent public IP</span>
+              </div>
             </div>
           </div>
         </div>
