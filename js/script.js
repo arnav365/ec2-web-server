@@ -203,3 +203,112 @@ function showToast(message) {
     toast.classList.remove('show');
   }, 2500);
 }
+
+
+/* ==========================================================================
+   8. 3D & Parallax Interactivity
+   ========================================================================== */
+document.addEventListener('DOMContentLoaded', () => {
+  const isReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (isReducedMotion) return;
+
+  // 1. Hero Parallax
+  const heroSection = document.getElementById('hero');
+  const heroVisual = document.getElementById('hero-3d-visual');
+  const stackLayers = document.querySelectorAll('.stack-layer, .stack-connector');
+
+  if (heroSection && heroVisual) {
+    let mouseX = 0;
+    let mouseY = 0;
+    let currentX = 0;
+    let currentY = 0;
+
+    heroSection.addEventListener('mousemove', (e) => {
+      if (window.innerWidth <= 768) {
+        mouseX = 0; mouseY = 0; return;
+      }
+      const rect = heroSection.getBoundingClientRect();
+      const x = e.clientX - rect.left - rect.width / 2;
+      const y = e.clientY - rect.top - rect.height / 2;
+      
+      // Map to roughly -5deg to +5deg
+      mouseX = (x / rect.width) * 10;
+      mouseY = -(y / rect.height) * 10;
+    });
+
+    heroSection.addEventListener('mouseleave', () => {
+      mouseX = 0;
+      mouseY = 0;
+    });
+
+    const animateParallax = () => {
+      currentX += (mouseX - currentX) * 0.1;
+      currentY += (mouseY - currentY) * 0.1;
+
+      heroVisual.style.transform = 
+otateX(deg) rotateY(deg);
+      
+      stackLayers.forEach(layer => {
+        const depth = parseFloat(layer.getAttribute('data-parallax-depth')) || 0;
+        
+        let baseZ = layer.classList.contains('layer-terminal') ? 40 : 20;
+        if(layer.classList.contains('stack-connector')) baseZ = 0;
+        
+        layer.style.transform = 	ranslateZ(px) translateX(px) translateY(px);
+      });
+
+      requestAnimationFrame(animateParallax);
+    };
+    requestAnimationFrame(animateParallax);
+  }
+
+  // 2. 3D Card Tilt Effect
+  const cards = document.querySelectorAll('.card, .service-card, .arch-node, .status-milestone, .tech-card');
+  
+  cards.forEach(card => {
+    card.addEventListener('mousemove', (e) => {
+      if (window.innerWidth <= 768) return;
+      
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      
+      const centerX = rect.width / 2;
+      const centerY = rect.height / 2;
+      
+      const rotateX = ((y - centerY) / centerY) * -6;
+      const rotateY = ((x - centerX) / centerX) * 6;
+      
+      card.style.transform = perspective(1000px) rotateX(deg) rotateY(deg) scale3d(1.02, 1.02, 1.02);
+    });
+
+    card.addEventListener('mouseleave', () => {
+      card.style.transform = perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1);
+    });
+  });
+
+  // 3. Floating Background Elements
+  const bgContainer = document.getElementById('floating-bg');
+  if (bgContainer) {
+    const numNodes = 12;
+    for (let i = 0; i < numNodes; i++) {
+      const node = document.createElement('div');
+      node.className = 'floating-node';
+      
+      const size = Math.random() * 60 + 20;
+      const posX = Math.random() * 100;
+      const posY = Math.random() * 100;
+      const delay = Math.random() * 10;
+      const duration = Math.random() * 15 + 15;
+      
+      node.style.width = ${size}px;
+      node.style.height = ${size}px;
+      node.style.left = ${posX}%;
+      node.style.top = ${posY}%;
+      node.style.animationDelay = -s;
+      node.style.animationDuration = ${duration}s;
+      
+      bgContainer.appendChild(node);
+    }
+  }
+});
